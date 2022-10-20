@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Security.Cryptography;
 
 namespace Practica_Metodos
 {
@@ -22,32 +23,46 @@ namespace Practica_Metodos
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             string nombre = txtNombre.Text;
-            string sexo = txtSexo.Text;
-            string tipo = txtTipo.Text;
+            string sexo = txtSexo.Text.ToUpper();
+            string tipo = txtTipo.Text.ToUpper();
 
-            sexo = ValidaSexo(sexo);
-            tipo=ValidaTipo(tipo);
-            ImprimeMSJ(tipo,sexo,nombre);   
+            if (!ValidaTipo(tipo))
+            {
+                MessageBox.Show("-ERROR,tipo invalido");
+            }
+            else if (!ValidaSexo(sexo))
+            {
+                MessageBox.Show("-ERROR,sexo invalido");
+            }
+            else
+            {
+                ImprimeMSJ(tipo,sexo,nombre);
+            }
+
         }
 
-        public string ValidaTipo(string tipoUsuario)
+        public bool ValidaTipo(string tipoUsuario)
         {
-            string tipo = tipoUsuario.ToLower();
-            while (tipo == "administrador" || tipo == "invitado" || tipo =="estandar")
+            switch (tipoUsuario)
             {
-                tipo = Interaction.InputBox("Error\nIngresa tu tipo de usuario :","Tipo");
-                tipo=tipo.ToLower();
+                case "ADMINISTRADOR":
+                case "ESTANDAR":
+                case "INVITADOS":
+                    return true;
+                default:
+                    return false;
             }
-            return tipo;
         }
-        public string ValidaSexo(string sexo)
+        public bool ValidaSexo(string sexo)
         {
-            string sex = sexo.ToLower();
-            while (sex != "femenino" || sex != "masculino")
+            switch (sexo)
             {
-                sex = Interaction.InputBox("Error\nIngresa tu sexo :", "Sexo").ToLower();
+                case "MASCULINO":
+                case "FEMENINO":
+                    return true;
+                default:
+                    return false;
             }
-            return sex;
         }
         public void ImprimeMSJ(string tipoUsuario, string sexo, string nombre)
         {

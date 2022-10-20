@@ -16,7 +16,7 @@ namespace Practica_Metodos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCaso5());
+            Application.Run(new frmCaso6());
         }
     }
 }

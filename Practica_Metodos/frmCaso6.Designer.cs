@@ -32,9 +32,9 @@
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.btnEnviar = new System.Windows.Forms.Button();
+            this.dtEdad = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -71,13 +71,6 @@
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 3;
             // 
-            // txtFechaNacimiento
-            // 
-            this.txtFechaNacimiento.Location = new System.Drawing.Point(383, 169);
-            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
-            this.txtFechaNacimiento.Size = new System.Drawing.Size(100, 20);
-            this.txtFechaNacimiento.TabIndex = 4;
-            // 
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(383, 131);
@@ -93,15 +86,23 @@
             this.btnEnviar.TabIndex = 6;
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = true;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
+            // 
+            // dtEdad
+            // 
+            this.dtEdad.Location = new System.Drawing.Point(383, 169);
+            this.dtEdad.Name = "dtEdad";
+            this.dtEdad.Size = new System.Drawing.Size(200, 20);
+            this.dtEdad.TabIndex = 7;
             // 
             // frmCaso6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dtEdad);
             this.Controls.Add(this.btnEnviar);
             this.Controls.Add(this.txtApellido);
-            this.Controls.Add(this.txtFechaNacimiento);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblFechaNacimiento);
             this.Controls.Add(this.lblApellido);
@@ -119,8 +120,8 @@
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.Label lblFechaNacimiento;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox txtFechaNacimiento;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Button btnEnviar;
+        private System.Windows.Forms.DateTimePicker dtEdad;
     }
 }
