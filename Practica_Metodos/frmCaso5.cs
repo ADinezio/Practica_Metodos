@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace Practica_Metodos
 {
@@ -25,39 +26,28 @@ namespace Practica_Metodos
             string tipo = txtTipo.Text;
 
             sexo = ValidaSexo(sexo);
-
-           
+            tipo=ValidaTipo(tipo);
+            ImprimeMSJ(tipo,sexo,nombre);   
         }
 
-        public void ValidaTipo(string tipoUsuario)
+        public string ValidaTipo(string tipoUsuario)
         {
-            string tipo = tipoUsuario.ToUpper();
-            switch (tipoUsuario)
+            string tipo = tipoUsuario.ToLower();
+            while (tipo == "administrador" || tipo == "invitado" || tipo =="estandar")
             {
-                case "ADMINISTRADOR":
-                    MessageBox.Show("Sos Administrador!");
-                    break;
-
-                case "ESTANDAR":
-                    MessageBox.Show("Sos usuario Estandar!");
-                    break;
-
-                case "INVITADO":
-                    MessageBox.Show("Sos usuario Invitado!");
-                    break;
-                default: MessageBox.Show("Usuario no valido!");
-                    break;
+                tipo = Interaction.InputBox("Error\nIngresa tu tipo de usuario :","Tipo");
+                tipo=tipo.ToLower();
             }
+            return tipo;
         }
         public string ValidaSexo(string sexo)
         {
-            string sex = sexo.ToUpper();
-            while (sex != "FEMENINO" || sex != "MASCULINO")
+            string sex = sexo.ToLower();
+            while (sex != "femenino" || sex != "masculino")
             {
-                MessageBox.Show("Error");
-                sex=Interaction.InputBox("Ingresa tu sexo :").ToUpper();
+                sex = Interaction.InputBox("Error\nIngresa tu sexo :", "Sexo").ToLower();
             }
-            return sex.ToLower();
+            return sex;
         }
         public void ImprimeMSJ(string tipoUsuario, string sexo, string nombre)
         {
