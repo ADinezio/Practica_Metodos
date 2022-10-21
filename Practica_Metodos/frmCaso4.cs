@@ -41,7 +41,7 @@ namespace Practica_Metodos
 
                 case "circulo":
                     double radio = Convert.ToDouble(Interaction.InputBox("Ingrese radio del circulo : "));
-                    area = Math.PI * radio;
+                    area = Math.PI * Math.Pow(radio,2);
                     break;
 
                 case "trapecio":
