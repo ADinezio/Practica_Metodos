@@ -23,8 +23,12 @@ namespace LoopsYVectores
         {
             precios= new double[8];
             CargarDatos(precios);
+            
 
-
+        }
+        private void btnMostrarTotal_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"El total es : {SumaPrecios(precios).ToString()}");
         }
 
         private void CargarDatos(double[] precios)
@@ -44,5 +48,7 @@ namespace LoopsYVectores
             }
             return suma;
         }
+
+        
     }
 }

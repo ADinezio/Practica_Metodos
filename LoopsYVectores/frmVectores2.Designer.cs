@@ -50,6 +50,7 @@
             this.btnMostrarTotal.TabIndex = 1;
             this.btnMostrarTotal.Text = "Mostrar Total";
             this.btnMostrarTotal.UseVisualStyleBackColor = true;
+            this.btnMostrarTotal.Click += new System.EventHandler(this.btnMostrarTotal_Click);
             // 
             // frmVectores2
             // 

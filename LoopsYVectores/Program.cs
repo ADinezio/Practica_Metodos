@@ -16,7 +16,7 @@ namespace LoopsYVectores
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmVectores1());
+            Application.Run(new frmVectores3());
         }
     }
 }
