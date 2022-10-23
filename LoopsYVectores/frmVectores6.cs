@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using static LoopsYVectores.frmVectores6;
 
+
 namespace LoopsYVectores
 {
     public partial class frmVectores6 : Form
@@ -19,7 +20,8 @@ namespace LoopsYVectores
         {
             public string NombreProvincia;
             public int[] Temperaturas;
-            public int PromedioTemperatura;
+            public int TemperaturaPromedio;
+            
         }
         Provincia[] provincias;
 
@@ -31,43 +33,74 @@ namespace LoopsYVectores
         private void btnProvincias_Click(object sender, EventArgs e)
         {
             provincias = new Provincia[4];
-            InicializaProvincias(provincias);
-            CargaProvincias(provincias);
-
+            InicializaCampos(provincias);
+            CargaDatos(provincias);
         }
 
         private void btnMostrarDatos_Click(object sender, EventArgs e)
         {
-            ImprimeDatos(provincias);
-            string provinciaConMayorTemperatura = ProvinciaMayorTemperatura(provincias);
-            lstImprimeDatos.Items.Add($"\nLa provincia con mayor temperatura es : {provinciaConMayorTemperatura}");
+            MuestraDatos(provincias);
+            string provMayorTempo=ProvinciaConMayorTemp(provincias);
+            lstImprimeDatos.Items.Add($"La provincia con mayor temperatura es : {provMayorTempo}");
+
         }
 
         //METODOS
 
-        public void InicializaProvincias(Provincia[] provincias) //Inicializa campos de provincias.
+        public void InicializaCampos(Provincia[] provincias)
         {
             for (int i = 0; i < provincias.Length; i++)
             {
                 provincias[i].NombreProvincia = "";
-                provincias[i].PromedioTemperatura = 0;
                 provincias[i].Temperaturas = new int[3];
+                provincias[i].TemperaturaPromedio = 0;
             }
         }
 
-        public void CargaProvincia(ref string provincia) // Carga nombre de una provincia
+        public string CargaNombreProvincia()
         {
-            provincia = Interaction.InputBox("Ingrese Nombre de la provincia : ", "Provincia");
+            string nombre= Interaction.InputBox("Ingrese nombre de la provincia", "Provincia");
+            return nombre;
         }
-        public void CargaTemperaturas(int[] temperaturas) //Carga las temperaturas de una provincia
+        public void CargaTemperaturas(Provincia provincia)
         {
-            for (int i = 0; i < temperaturas.Length; i++)
+            for (int i = 0; i < provincia.Temperaturas.Length; i++)
             {
-                temperaturas[i] = Convert.ToInt32(Interaction.InputBox($"{i + 1}. Ingrese temperatura :","Temperaturas"));
+                provincia.Temperaturas[i] = Convert.ToInt32(Interaction.InputBox("Ingrese temperatura", "Temperaturas"));
             }
         }
 
-        public int PromedioTemperaturas(int[] temperaturas) // Calcula el promedio de temperaturas de una provincia
+        public void CargaDatos(Provincia[] provincias)
+        {
+            for (int i = 0; i < provincias.Length; i++)
+            {
+               provincias[i].NombreProvincia=CargaNombreProvincia();
+                CargaTemperaturas(provincias[i]);
+                provincias[i].TemperaturaPromedio = PromedioTemperatura(provincias[i].Temperaturas);
+            }
+        }
+
+        public void MuestraNombreProvincias(Provincia provincia)
+        {
+            lstImprimeDatos.Items.Add(provincia.NombreProvincia);
+        }
+        public void MuestraTemperaturas(Provincia provincia)
+        {
+            for (int i = 0; i < provincia.Temperaturas.Length; i++)
+            {
+                lstImprimeDatos.Items.Add(provincia.Temperaturas[i]);
+            }
+        }
+        public void MuestraDatos(Provincia[] provincias)
+        {
+            for (int i = 0; i < provincias.Length; i++)
+            {
+                MuestraNombreProvincias(provincias[i]);
+                MuestraTemperaturas(provincias[i]);
+            }
+        }
+
+        public int PromedioTemperatura(int[] temperaturas)
         {
             int suma = 0;
             for (int i = 0; i < temperaturas.Length; i++)
@@ -77,56 +110,20 @@ namespace LoopsYVectores
             return suma / temperaturas.Count();
         }
 
-        public void CargaDatos(Provincia provincia) // Carga datos de una provincia
+        public string ProvinciaConMayorTemp(Provincia[] provincias)
         {
-            CargaProvincia(ref provincia.NombreProvincia);
-            CargaTemperaturas(provincia.Temperaturas);
-        }
-
-        public void CargaProvincias(Provincia[] provincias)
-        {
-            for (int i = 0; i < provincias.Length; i++)
-            {
-                CargaDatos(provincias[i]);
-                provincias[i].PromedioTemperatura = PromedioTemperaturas(provincias[i].Temperaturas);
-            }
-        }
-
-
-        public string ProvinciaMayorTemperatura(Provincia[] provincias) //Busca la provincia con mayor temperatura
-        {
-            string provincia = "";
-            int mayor = provincias[0].PromedioTemperatura;
+            int mayor = provincias[0].TemperaturaPromedio;
+            string prov = provincias[0].NombreProvincia;
             for (int i = 1; i < provincias.Length; i++)
             {
-                if (mayor < provincias[i].PromedioTemperatura)
+                if (mayor < provincias[i].TemperaturaPromedio)
                 {
-                    provincia = provincias[i].NombreProvincia;
-                    mayor = provincias[i].PromedioTemperatura;
+                    mayor=provincias[i].TemperaturaPromedio;
+                    prov = provincias[i].NombreProvincia;
                 }
             }
-                return provincia;
-        }
-        public void ImprimeProvincia(string provincia)  //Imprime nombre de la provincia
-        {
-            lstImprimeDatos.Items.Add(provincia);
+            return prov;
         }
 
-        public void ImprimeTemperaturas(int[] temperaturas) //Imprime las temperaturas de una provincia
-        {  
-                for (int i = 0; i < temperaturas.Length; i++)
-                {
-                    lstImprimeDatos.Items.Add(temperaturas[i]);
-                }
-        }
-
-        public void ImprimeDatos(Provincia[] provincias)    //Imprime la Provincia y las temperaturas
-        {
-            for (int i = 0; i < provincias.Length; i++)
-            {
-                ImprimeProvincia(provincias[i].NombreProvincia);
-                ImprimeTemperaturas(provincias[i].Temperaturas);
-            }
-        }
     }
 }

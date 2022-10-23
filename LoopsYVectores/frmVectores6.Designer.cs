@@ -38,7 +38,7 @@
             this.btnProvincias.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnProvincias.Location = new System.Drawing.Point(301, 64);
             this.btnProvincias.Name = "btnProvincias";
-            this.btnProvincias.Size = new System.Drawing.Size(240, 23);
+            this.btnProvincias.Size = new System.Drawing.Size(279, 23);
             this.btnProvincias.TabIndex = 0;
             this.btnProvincias.Text = "Ingresar Provincia";
             this.btnProvincias.UseVisualStyleBackColor = false;
@@ -48,7 +48,7 @@
             // 
             this.btnMostrarDatos.Location = new System.Drawing.Point(301, 109);
             this.btnMostrarDatos.Name = "btnMostrarDatos";
-            this.btnMostrarDatos.Size = new System.Drawing.Size(240, 23);
+            this.btnMostrarDatos.Size = new System.Drawing.Size(279, 23);
             this.btnMostrarDatos.TabIndex = 2;
             this.btnMostrarDatos.Text = "Mostrar Datos";
             this.btnMostrarDatos.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@
             this.lstImprimeDatos.FormattingEnabled = true;
             this.lstImprimeDatos.Location = new System.Drawing.Point(301, 161);
             this.lstImprimeDatos.Name = "lstImprimeDatos";
-            this.lstImprimeDatos.Size = new System.Drawing.Size(240, 199);
+            this.lstImprimeDatos.Size = new System.Drawing.Size(279, 238);
             this.lstImprimeDatos.TabIndex = 3;
             // 
             // frmVectores6
